@@ -1,0 +1,882 @@
+<!DOCTYPE html> <!-- Déclaration du type de document HTML5 -->
+<html lang="fr" class="h-full bg-slate-900"> <!-- Racine HTML avec langue française et fond sombre -->
+<head> <!-- En-tête du document avec métadonnées et ressources -->
+    <meta charset="UTF-8"> <!-- Encodage des caractères en UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configuration responsive pour mobiles -->
+    <title>MethodoMaster - Guide & Respect des Méthodologies de Projet</title> <!-- Titre de l'onglet du navigateur -->
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Chargement du framework CSS Tailwind -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script> <!-- Chargement des icônes FontAwesome -->
+    <style> <!-- Style CSS personnalisé complémentaire -->
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'); /* Importation de la police Inter */
+        body { font-family: 'Inter', sans-serif; } /* Application de la police par défaut */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; } /* Largeur de la barre de défilement sur Chrome/Safari */
+        .custom-scrollbar::-webkit-scrollbar-track { background: #1e293b; } /* Couleur du fond de la barre de défilement */
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; } /* Couleur du curseur de défilement */
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #64748b; } /* Survol du curseur de défilement */
+    </style> <!-- Fin du bloc de style -->
+</head> <!-- Fin de l'en-tête -->
+<body class="h-full text-slate-100 flex flex-col custom-scrollbar"> <!-- Corps de la page flexbox sombre -->
+
+    <header class="bg-slate-800/80 backdrop-blur border-b border-slate-700 sticky top-0 z-50"> <!-- En-tête haut de page fixe avec effet de flou -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between"> <!-- Conteneur principal centré -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="showSection('home')"> <!-- Logo et titre cliquables -->
+                <div class="p-2 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-lg shadow-lg"> <!-- Icône stylisée avec dégradé -->
+                    <i class="fa-solid font-bold fa-diagram-project text-xl text-white"></i> <!-- Icône projet -->
+                </div> <!-- Fin de l'icône -->
+                <div> <!-- Groupe de textes pour le titre -->
+                    <h1 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-300">MethodoMaster</h1> <!-- Nom de l'application -->
+                    <p class="text-xs text-slate-400">Respect & Conduite des Méthodes Projets</p> <!-- Sous-titre explicatif -->
+                </div> <!-- Fin du groupe texte -->
+            </div> <!-- Fin de la section logo -->
+            
+            <nav class="flex items-center space-x-2 sm:space-x-4"> <!-- Navigation principale -->
+                <button onclick="showSection('home')" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-700 transition flex items-center space-x-1"> <!-- Bouton Accueil -->
+                    <i class="fa-solid fa-house text-indigo-400"></i> <!-- Icône Accueil -->
+                    <span class="hidden sm:inline">Méthodes</span> <!-- Texte Accueil -->
+                </button> <!-- Fin du bouton Accueil -->
+                <button onclick="showSection('quiz')" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-700 transition flex items-center space-x-1"> <!-- Bouton Quiz Recommandation -->
+                    <i class="fa-solid fa-compass text-purple-400"></i> <!-- Icône Boussole -->
+                    <span>Quelle méthode ?</span> <!-- Texte Quiz -->
+                </button> <!-- Fin du bouton Quiz -->
+                <button onclick="showSection('dashboard')" id="nav-dash-btn" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-700 transition flex items-center space-x-1"> <!-- Bouton Espace de Suivi -->
+                    <i class="fa-solid fa-chart-line text-emerald-400"></i> <!-- Icône Dashboard -->
+                    <span>Espace Suivi</span> <!-- Texte Espace Suivi -->
+                </button> <!-- Fin du bouton Espace Suivi -->
+            </nav> <!-- Fin de la barre de navigation -->
+        </div> <!-- Fin du conteneur d'en-tête -->
+    </header> <!-- Fin de l'en-tête haut de page -->
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8"> <!-- Conteneur principal pour le contenu dynamique -->
+
+        <!-- SECTION 1: SELECTION DES METHODES (ACCUEIL) -->
+        <section id="sec-home" class="space-y-8"> <!-- Section d'accueil affichant les cartes de méthodes -->
+            <div class="text-center max-w-3xl mx-auto space-y-3"> <!-- Titre et présentation générale -->
+                <h2 class="text-3xl font-extrabold text-white">Choisissez la méthode que vous souhaitez respecter</h2> <!-- Titre d'accueil -->
+                <p class="text-slate-400 text-sm sm:text-base">Chaque projet nécessite un cadre adapté. Sélectionnez une méthodologie pour accéder à son guide de règles, son assistant de conformité et ses outils de gestion.</p> <!-- Explication initiale -->
+            </div> <!-- Fin du titre -->
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="methods-grid"> <!-- Grille responsive des cartes de méthodes -->
+                <!-- Les cartes seront générées dynamiquement en JavaScript -->
+            </div> <!-- Fin de la grille des cartes -->
+        </section> <!-- Fin de la section d'accueil -->
+
+        <!-- SECTION 2: QUIZ AIDE A LA DECISION -->
+        <section id="sec-quiz" class="hidden max-w-3xl mx-auto bg-slate-800 p-6 sm:p-8 rounded-2xl border border-slate-700 shadow-xl space-y-6"> <!-- Section du questionnaire interactif -->
+            <div class="border-b border-slate-700 pb-4"> <!-- En-tête du questionnaire -->
+                <h2 class="text-2xl font-bold text-white flex items-center space-x-2"> <!-- Titre du quiz -->
+                    <i class="fa-solid fa-wand-magic-sparkles text-purple-400"></i> <!-- Icône magique -->
+                    <span>Assistant : Quelle méthode choisir pour votre projet ?</span> <!-- Libellé du titre -->
+                </h2> <!-- Fin du titre -->
+                <p class="text-sm text-slate-400 mt-1">Répondez à ces 5 questions clés pour identifier le cadre méthodologique le plus pertinent.</p> <!-- Explication -->
+            </div> <!-- Fin de l'en-tête du questionnaire -->
+
+            <form id="quiz-form" class="space-y-6"> <!-- Formulaire du questionnaire -->
+                
+                <div class="space-y-2"> <!-- Question 1 -->
+                    <label class="block text-sm font-semibold text-indigo-300">1. Quel est le niveau d'incertitude ou de variabilité des besoins ?</label> <!-- Question 1 texte -->
+                    <select id="q-uncertainty" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm focus:border-indigo-500 focus:outline-none"> <!-- Sélection Q1 -->
+                        <option value="high">Très élevé - Les besoins évoluent fréquemment durant le projet</option> <!-- Option élevée -->
+                        <option value="medium">Moyen - Quelques ajustements sont à prévoir</option> <!-- Option moyenne -->
+                        <option value="low">Faible - Le besoin est parfaitement clair, figé et documenté</option> <!-- Option faible -->
+                    </select> <!-- Fin sélection Q1 -->
+                </div> <!-- Fin Question 1 -->
+
+                <div class="space-y-2"> <!-- Question 2 -->
+                    <label class="block text-sm font-semibold text-indigo-300">2. Quelle est la structuration des livraisons souhaitée ?</label> <!-- Question 2 texte -->
+                    <select id="q-delivery" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm focus:border-indigo-500 focus:outline-none"> <!-- Sélection Q2 -->
+                        <option value="continuous">Flux continu - Déploiement des tâches dès qu'elles sont prêtes</option> <!-- Option continue -->
+                        <option value="sprints">Fixe et régulière - Versions exploitables toutes les 1 à 4 semaines</option> <!-- Option sprints -->
+                        <option value="incremental">Par morceaux fonctionnels progressifs (Incréments)</option> <!-- Option incréments -->
+                        <option value="single">Une seule livraison finale majeure après de longs tests</option> <!-- Option finale unique -->
+                    </select> <!-- Fin sélection Q2 -->
+                </div> <!-- Fin Question 2 -->
+
+                <div class="space-y-2"> <!-- Question 3 -->
+                    <label class="block text-sm font-semibold text-indigo-300">3. Quelle est la taille de l'équipe projet ?</label> <!-- Question 3 texte -->
+                    <select id="q-team" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm focus:border-indigo-500 focus:outline-none"> <!-- Sélection Q3 -->
+                        <option value="small">Petite équipe pluridisciplinaire (3 à 9 personnes)</option> <!-- Option petite équipe -->
+                        <option value="medium">Équipe de taille moyenne (10 à 25 personnes)</option> <!-- Option équipe moyenne -->
+                        <option value="large">Grande organisation / Multiples équipes (50+ personnes)</option> <!-- Option grande équipe / SAFe -->
+                    </select> <!-- Fin sélection Q3 -->
+                </div> <!-- Fin Question 3 -->
+
+                <div class="space-y-2"> <!-- Question 4 -->
+                    <label class="block text-sm font-semibold text-indigo-300">4. Quel niveau de contractualisation / rigueur documentaire est exigé ?</label> <!-- Question 4 texte -->
+                    <select id="q-docs" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm focus:border-indigo-500 focus:outline-none"> <!-- Sélection Q4 -->
+                        <option value="light">Léger - On privilégie un produit qui fonctionne au contrat rigide</option> <!-- Option légère -->
+                        <option value="medium">Équilibré - Documentation utile mais sans lourdeur</option> <!-- Option équilibrée -->
+                        <option value="strict">Strict - Exigence de validation des spécifications/tests par étapes</option> <!-- Option stricte -->
+                    </select> <!-- Fin sélection Q4 -->
+                </div> <!-- Fin Question 4 -->
+
+                <div class="space-y-2"> <!-- Question 5 -->
+                    <label class="block text-sm font-semibold text-indigo-300">5. Quel est l'objectif principal du management ?</label> <!-- Question 5 texte -->
+                    <select id="q-focus" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm focus:border-indigo-500 focus:outline-none"> <!-- Sélection Q5 -->
+                        <option value="flow">Optimiser le flux de travail et éviter la surcharge (WIP)</option> <!-- Option flux -->
+                        <option value="value">Maximiser la valeur utilisateur en s'adaptant à ses retours</option> <!-- Option valeur -->
+                        <option value="quality">Garantir une qualité extrême via une vérification/validation à chaque niveau</option> <!-- Option qualité -->
+                        <option value="predictability">Respecter scrupuleusement un planning et budget prédéfinis</option> <!-- Option prédictibilité -->
+                    </select> <!-- Fin sélection Q5 -->
+                </div> <!-- Fin Question 5 -->
+
+                <button type="button" onclick="evaluateQuiz()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg transition shadow-lg flex items-center justify-center space-x-2"> <!-- Bouton valider quiz -->
+                    <i class="fa-solid fa-calculator"></i> <!-- Icône calcul -->
+                    <span>Analyser et recommander une méthode</span> <!-- Texte bouton -->
+                </button> <!-- Fin du bouton valider -->
+            </form> <!-- Fin du formulaire -->
+
+            <div id="quiz-result" class="hidden bg-slate-900 border border-indigo-500/50 p-6 rounded-xl space-y-4"> <!-- Zone des résultats du quiz -->
+                <!-- Le résultat sera injecté via JS -->
+            </div> <!-- Fin zone de résultats -->
+        </section> <!-- Fin de la section quiz -->
+
+        <!-- SECTION 3: TABLEAU DE BORD & GUIDE DU RESPECT DE LA METHODE -->
+        <section id="sec-dashboard" class="hidden space-y-8"> <!-- Section détaillée de la méthode sélectionnée -->
+            
+            <div id="method-banner" class="bg-gradient-to-r from-slate-800 to-indigo-950 p-6 sm:p-8 rounded-2xl border border-slate-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4"> <!-- Bannière d'en-tête méthode -->
+                <div class="space-y-2"> <!-- Bloc texte explicatif de la méthode -->
+                    <div class="flex items-center space-x-3"> <!-- Ligne titre et badge -->
+                        <span id="banner-icon" class="text-3xl text-indigo-400"></span> <!-- Icône dynamique -->
+                        <h2 id="banner-title" class="text-2xl sm:text-3xl font-extrabold text-white">--</h2> <!-- Titre méthode -->
+                    </div> <!-- Fin ligne titre -->
+                    <p id="banner-desc" class="text-slate-300 text-sm max-w-2xl">--</p> <!-- Description synthétique -->
+                </div> <!-- Fin bloc texte -->
+
+                <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700 flex items-center space-x-4 min-w-[220px]"> <!-- Bloc score de conformité -->
+                    <div class="relative w-16 h-16 flex items-center justify-center"> <!-- Cercle de score -->
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36"> <!-- SVG cercle de progression -->
+                            <path class="text-slate-700" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /> <!-- Cercle arrière-plan -->
+                            <path id="score-circle" class="text-indigo-500" stroke-dasharray="0, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /> <!-- Cercle valeur -->
+                        </svg> <!-- Fin SVG -->
+                        <span id="score-text" class="absolute text-sm font-bold text-white">0%</span> <!-- Texte du pourcentage -->
+                    </div> <!-- Fin cercle de score -->
+                    <div> <!-- Explication du score -->
+                        <div class="text-xs text-slate-400">Taux de Respect</div> <!-- Libellé -->
+                        <div id="score-status" class="text-sm font-bold text-indigo-400">Non conforme</div> <!-- Statut qualitatif -->
+                    </div> <!-- Fin explication -->
+                </div> <!-- Fin bloc score -->
+            </div> <!-- Fin bannière d'en-tête -->
+
+            <!-- ONGLETS DE NAVIGATION DE LA METHODE -->
+            <div class="border-b border-slate-700 flex space-x-4"> <!-- Conteneur des onglets -->
+                <button onclick="switchTab('guide')" id="tab-btn-guide" class="pb-3 text-sm font-semibold border-b-2 border-indigo-500 text-indigo-400 flex items-center space-x-2"> <!-- Onglet Guide & Règles -->
+                    <i class="fa-solid fa-list-check"></i> <!-- Icône checklist -->
+                    <span>Règles & Checklist de Conformité</span> <!-- Texte onglet -->
+                </button> <!-- Fin onglet Guide -->
+                <button onclick="switchTab('board')" id="tab-btn-board" class="pb-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center space-x-2"> <!-- Onglet Outil Pratique -->
+                    <i class="fa-solid fa-table-columns"></i> <!-- Icône tableau -->
+                    <span>Tableau / Outil Interactif</span> <!-- Texte onglet -->
+                </button> <!-- Fin onglet Outil -->
+            </div> <!-- Fin conteneur onglets -->
+
+            <!-- CONTENU 1: CHECKLIST DES REGLES DE RESPECT -->
+            <div id="tab-content-guide" class="grid grid-cols-1 lg:grid-cols-3 gap-6"> <!-- Contenu du guide avec grille responsive -->
+                <div class="lg:col-span-2 space-y-4"> <!-- Colonne principale des règles -->
+                    <h3 class="text-lg font-bold text-white flex items-center space-x-2"> <!-- Titre section règles -->
+                        <i class="fa-solid fa-clipboard-check text-emerald-400"></i> <!-- Icône checklist -->
+                        <span>Checklist : Règles impératives à cocher</span> <!-- Texte titre -->
+                    </h3> <!-- Fin titre section -->
+                    
+                    <div id="checklist-container" class="space-y-3"> <!-- Conteneur dynamique des critères -->
+                        <!-- Injecté dynamiquement par JS -->
+                    </div> <!-- Fin conteneur des critères -->
+                </div> <!-- Fin colonne principale -->
+
+                <div class="space-y-6"> <!-- Colonne secondaire : Principes et conseils -->
+                    <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 space-y-3"> <!-- Carte des fondamentaux -->
+                        <h4 class="text-md font-bold text-indigo-300 flex items-center space-x-2"> <!-- Titre fondamentaux -->
+                            <i class="fa-solid fa-book-open"></i> <!-- Icône livre -->
+                            <span>Principes Fondamentaux</span> <!-- Texte -->
+                        </h4> <!-- Fin titre -->
+                        <ul id="principles-list" class="space-y-2 text-xs text-slate-300 list-disc list-inside"> <!-- Liste des principes -->
+                            <!-- Injecté par JS -->
+                        </ul> <!-- Fin liste -->
+                    </div> <!-- Fin carte fondamentaux -->
+
+                    <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 space-y-3"> <!-- Carte des pièges à éviter -->
+                        <h4 class="text-md font-bold text-rose-400 flex items-center space-x-2"> <!-- Titre pièges -->
+                            <i class="fa-solid fa-triangle-exclamation"></i> <!-- Icône attention -->
+                            <span>Erreurs fréquentes ("Antipatterns")</span> <!-- Texte -->
+                        </h4> <!-- Fin titre -->
+                        <ul id="antipatterns-list" class="space-y-2 text-xs text-slate-300 list-disc list-inside"> <!-- Liste des erreurs -->
+                            <!-- Injecté par JS -->
+                        </ul> <!-- Fin liste -->
+                    </div> <!-- Fin carte des pièges -->
+                </div> <!-- Fin colonne secondaire -->
+            </div> <!-- Fin contenu guide -->
+
+            <!-- CONTENU 2: OUTILS SPECIFIQUES A LA METHODE -->
+            <div id="tab-content-board" class="hidden space-y-6"> <!-- Zone d'outil interactif selon la méthode -->
+                <div id="interactive-tool-space"> <!-- Zone injectée dynamiquement selon la méthode choisie -->
+                    <!-- Contenu d'outil dynamique (Kanban, Sprint, Gantt, Incréments...) -->
+                </div> <!-- Fin zone interactive -->
+            </div> <!-- Fin contenu outil -->
+
+        </section> <!-- Fin section dashboard -->
+
+    </main> <!-- Fin du conteneur principal -->
+
+    <!-- FOOTER PIED DE PAGE -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-4 mt-auto text-center text-xs text-slate-500"> <!-- Pied de page fixe bas -->
+        MethodoMaster © 2026 - Plateforme interactive d'apprentissage et de suivi de conformité des méthodes projets. <!-- Mention légale -->
+    </footer> <!-- Fin du pied de page -->
+
+    <script> <!-- Script JavaScript contenant toute la logique métier -->
+
+        // BASE DE DONNEES DES 7 METHODOLOGIES ET MODELES
+        const METHODOLOGIES = { // Objet principal contenant la description et la logique des méthodes
+            agile: {
+                id: 'agile', // Identifiant unique
+                name: 'Méthodes Agiles (Principes Généraux)', // Nom complet
+                icon: 'fa-solid fa-person-running', // Icône FontAwesome
+                color: 'from-amber-500 to-orange-600', // Couleurs du thème
+                shortDesc: 'Orientées adaptation, satisfaction client, livraisons régulières et collaboration humaine.', // Description courte
+                fullDesc: 'L’agilité est un état d’esprit fondé sur le Manifeste Agile (2001). Elle privilégie les individus, le produit opérationnel, la collaboration et la réactivité au changement par rapport aux processus rigides.', // Description complète
+                principles: [ // Principes de la méthode
+                    'Priorité à la satisfaction du client par des livraisons rapides et régulières.', // Principe 1
+                    'Accueillir positivement les changements de besoins, même tardifs.', // Principe 2
+                    'Mettre à disposition un logiciel/produit opérationnel fréquemment.', // Principe 3
+                    'Les équipes métiers et les développeurs doivent travailler ensemble quotidiennement.' // Principe 4
+                ], // Fin principes
+                antipatterns: [ // Erreurs courantes
+                    'Considérer l’agilité comme une absence totale de documentation et de planification.', // Erreur 1
+                    'Ne pas impliquer activement le client/utilisateur final.', // Erreur 2
+                    'Conserver une rigidité sur le périmètre tout en exigeant des délais courts.' // Erreur 3
+                ], // Fin erreurs
+                rules: [ // Liste de contrôle pour calculer le respect de la méthode
+                    { id: 'a1', text: 'Implication continue du client ou représentant métier dans le projet' }, // Règle 1
+                    { id: 'a2', text: 'Capacité démontrée à modifier le backlog selon les retours d\'expérience' }, // Règle 2
+                    { id: 'a3', text: 'Livraison de versions fonctionnelles de manière itérative et fréquente' }, // Règle 3
+                    { id: 'a4', text: 'Équipe autonome, responsabilisée et auto-organisée' }, // Règle 4
+                    { id: 'a5', text: 'Priorisation constante du travail par la valeur métier apportée' } // Règle 5
+                ] // Fin règles
+            }, // Fin méthode Agile
+
+            scrum: { // 2. Scrum
+                id: 'scrum', // Identifiant unique
+                name: 'Scrum', // Nom
+                icon: 'fa-solid fa-arrows-spin', // Icône
+                color: 'from-blue-500 to-cyan-600', // Dégradé
+                shortDesc: 'Cadre agile structuré par rôles (PO, SM, Équipe) et cérémonies (Sprint, Daily, Review, Retro).', // Description courte
+                fullDesc: 'Scrum est le schéma d’organisation agile le plus populaire. Le travail est découpé en itérations de durée fixe (Sprints de 1 à 4 semaines) rythmées par 4 cérémonies clés et 3 rôles distincts.', // Description complète
+                principles: [ // Principes
+                    'Piliers empiriques : Transparence, Inspection, Adaptation.', // Principe 1
+                    'Séparation claire des rôles : Product Owner (Quoi), Scrum Master (Comment/Processus), Équipe (Réalisation).', // Principe 2
+                    'Rhythm invariable des Sprints avec un objectif clair (Sprint Goal).' // Principe 3
+                ], // Fin principes
+                antipatterns: [ // Antipatterns
+                    'Modifier l’objectif du Sprint en cours de route.', // Erreur 1
+                    'Transformations des Daily Scrum en réunions de reporting de statut au manager.', // Erreur 2
+                    'Scrum Master occupant en même temps le rôle de Product Owner.' // Erreur 3
+                ], // Fin antipatterns
+                rules: [ // Règles de conformité
+                    { id: 's1', text: 'Rôles clairement définis sans cumul (PO, SM, Équipe de réalisation)' }, // Règle 1
+                    { id: 's2', text: 'Respect strict de la cadence fixe des Sprints (ex: 2 semaines)' }, // Règle 2
+                    { id: 's3', text: 'Tenue quotidienne de la Daily Standup (max 15 minutes)' }, // Règle 3
+                    { id: 's4', text: 'Présentation d\'un Incrément utilisable ("Done") lors de la Sprint Review' }, // Règle 4
+                    { id: 's5', text: 'Tenue systématique d\'une Rétrospective pour l\'amélioration continue' } // Règle 5
+                ] // Fin règles
+            }, // Fin méthode Scrum
+
+            kanban: { // 3. Kanban
+                id: 'kanban', // Identifiant unique
+                name: 'Kanban', // Nom
+                icon: 'fa-solid fa-table-list', // Icône
+                color: 'from-emerald-500 to-teal-600', // Dégradé
+                shortDesc: 'Gestion en flux tendu par visualisation, limitation du travail en cours (WIP) et optimisation.', // Description courte
+                fullDesc: 'Kanban vise à maximiser la fluidité de production en visualisant l’état des tâches sur un tableau et en limitant strictement le nombre de tâches en cours simultanées (Limites WIP) pour éviter les goulots d’étranglement.', // Description
+                principles: [ // Principes
+                    'Visualiser explicitement le flux de travail.', // Principe 1
+                    'Limiter le travail en cours (Work In Progress - WIP).', // Principe 2
+                    'Gérer et optimiser le temps de traversée (Cycle Time).', // Principe 3
+                    'Rendre les règles de gestion explicites pour toute l’équipe.' // Principe 4
+                ], // Fin principes
+                antipatterns: [ // Erreurs
+                    'Utiliser un tableau Kanban sans appliquer de limites WIP (simple To-Do list).', // Erreur 1
+                     me => 'Négliger l’accumulation de cartes bloquées dans une colonne.', // Erreur 2
+                    'Ajouter constamment de nouvelles cartes urgentes en contournant le flux.' // Erreur 3
+                ], // Fin erreurs
+                rules: [ // Règles
+                    { id: 'k1', text: 'Toutes les étapes du processus sont matérialisées par des colonnes visibles' }, // Règle 1
+                    { id: 'k2', text: 'Des limites WIP (Work In Progress) strictes sont définies par colonne' }, // Règle 2
+                    { id: 'k3', text: 'Système "Tiré" : les membres prennent une tâche quand ils ont de la capacité' }, // Règle 3
+                    { id: 'k4', text: 'Mesure régulière du temps de cycle (Cycle Time) et du débit' }, // Règle 4
+                    { id: 'k5', text: 'Réunions régulières d\'analyse pour éliminer les goulots d\'étranglement' } // Règle 5
+                ] // Fin règles
+            }, // Fin Kanban
+
+            waterfall: { // 4. Cascade (Waterfall)
+                id: 'waterfall', // Identifiant unique
+                name: 'Modèle en Cascade (Waterfall)', // Nom
+                icon: 'fa-solid fa-water', // Icône
+                color: 'from-indigo-600 to-blue-800', // Dégradé
+                shortDesc: 'Approche séquentielle classique : chaque phase s’exécute après la validation complète de la précédente.', // Description courte
+                fullDesc: 'Le modèle prédictif en cascade découpe le projet en étapes séquentielles strictes (Besoins -> Conception -> Réalisation -> Tests -> Déploiement). Chaque phase se termine par une validation documentaire avant de passer à la suivante.', // Description
+                principles: [ // Principes
+                    'Planification complète, exhaustive et détaillée dès le début.', // Principe 1
+                    'Séquencement strict : pas de retour en arrière sans avenant au projet.', // Principe 2
+                    'Fort niveau de documentation formelle à la fin de chaque étape (Jalons).' // Principe 3
+                ], // Fin principes
+                antipatterns: [ // Erreurs
+                    'Démarrer les développements sans la validation signée des spécifications.', // Erreur 1
+                    'Changer le périmètre en cours de route sans réviser le contrat/planning.', // Erreur 2
+                    'Découvrir la véritable adéquation au besoin utilisateur seulement en fin de projet.' // Erreur 3
+                ], // Fin erreurs
+                rules: [ // Règles
+                    { id: 'w1', text: 'Expression des besoins validée et signée avant la conception' }, // Règle 1
+                    { id: 'w2', text: 'Conception technique complète validée avant le codage/réalisation' }, // Règle 2
+                    { id: 'w3', text: 'Validation stricte du passage de chaque jalon par revue documentaire' }, // Règle 3
+                    { id: 'w4', text: 'Gestion stricte des demandes de modification par avenants au contrat' }, // Règle 4
+                    { id: 'w5', text: 'Phase de recette globale finale avant la mise en production' } // Règle 5
+                ] // Fin règles
+            }, // Fin Cascade
+
+            vmodel: { // 5. Modèle en V
+                id: 'vmodel', // Identifiant unique
+                name: 'Modèle en V', // Nom
+                icon: 'fa-solid fa-v', // Icône
+                color: 'from-purple-600 to-indigo-800', // Dégradé
+                shortDesc: 'Modèle prédictif associant à chaque phase descendante de conception une phase ascendante de test.', // Description courte
+                fullDesc: 'Évolution du modèle en cascade, le modèle en V anticipe les recettes dès les étapes de conception. La branche descendante prépare et conçoit le projet, tandis que la branche ascendante vérifie et valide chaque niveau correspondant.', // Description
+                principles: [ // Principes
+                    'Symétrie entre la conception et le niveau de qualification correspondant.', // Principe 1
+                    'Rédaction des cahiers de tests dès la phase de rédaction des exigences.', // Principe 2
+                    'Validation progressive : Tests unitaires -> Intégration -> Validation -> Recette.' // Principe 3
+                ], // Fin principes
+                antipatterns: [ // Erreurs
+                    'Rédiger les plans de tests à la fin lors de la phase de recette.', // Erreur 1
+                    'Négliger les tests d’intégration entre composants.', // Erreur 2
+                    'Ne pas faire correspondre chaque exigence à un cas de test précis.' // Erreur 3
+                ], // Fin erreurs
+                rules: [ // Règles
+                    { id: 'v1', text: 'Les stratégies et cas de tests sont rédigés dès les phases de conception' }, // Règle 1
+                    { id: 'v2', text: 'Traçabilité directe entre chaque besoin et son scénario de recette' }, // Règle 2
+                    { id: 'v3', text: 'Exécution rigoureuse des tests unitaires, d\'intégration et d\'acceptation' }, // Règle 3
+                    { id: 'v4', text: 'Correction systématique des anomalies constatées avant passage à l\'étape supérieure' }, // Règle 4
+                    { id: 'v5', text: 'Livrables documentaires validés à chaque niveau du V' } // Règle 5
+                ] // Fin règles
+            }, // Fin V-Model
+            incremental: {
+                id: 'incremental',
+                name: 'Modèle Incrémental',
+                icon: 'fa-solid fa-cubes',
+                color: 'from-violet-500 to-purple-700',
+                shortDesc: 'Livraison du produit par blocs de fonctionnalités utilisables qui s’ajoutent les uns aux autres.',
+                fullDesc: 'Le modèle incrémental divise le produit en sous-ensembles fonctionnels autonomes (incréments). Chaque incrément est conçu, développé et livré de manière complète, venant enrichir le produit final existant.',
+                principles: [
+                    'Découpage du périmètre en modules fonctionnels indépendants.',
+                    'Livraison de valeur métier immédiatement utilisable à chaque étape.',
+                    'Chaque nouvel incrément s’intègre sans casser les modules précédents.'
+                ],
+                antipatterns: [
+                    'Livrer des incréments non fonctionnels ou impossibles à tester séparément.',
+                    'Compromettre l’architecture globale en ajoutant des briques sans vision d’ensemble.',
+                    'Négliger les tests de non-régression lors de l’ajout d’un nouvel incrément.'
+                ],
+                rules: [
+                    { id: 'inc1', text: 'Découpage du produit en fonctionnalités/modules autonomes' },
+                    { id: 'inc2', text: 'Chaque incrément ajoute une valeur métier exploitable par l\'utilisateur' },
+                    { id: 'inc3', text: 'Tests de non-régression systématiques lors de l\'ajout d\'un incrément' },
+                    { id: 'inc4', text: 'Priorisation stricte des incréments par apport de valeur' },
+                    { id: 'inc5', text: 'Intégration continue garantie pour maintenir la stabilité globale' }
+                ]
+            }, // Fin incrémental
+
+            safe: { // 8. Méthode SAFe (Scaled Agile Framework)
+                id: 'safe', // Identifiant unique
+                name: 'SAFe (Scaled Agile Framework)', // Nom complet
+                icon: 'fa-solid fa-sitemap', // Icône arborescence / échelle
+                color: 'from-teal-600 to-cyan-800', // Dégradé
+                shortDesc: 'Agilité à l’échelle pour grandes organisations : alignement multi-équipes via PI Planning et Agile Release Trains.', // Description courte
+                fullDesc: 'SAFe est le cadre d’agilité à l’échelle le plus répandu. Il synchronise le travail de dizaines ou centaines d’équipes réunies au sein d’Agile Release Trains (ART). Le travail est cadencé par des Program Increments (PI) de 8 à 12 semaines comprenant un PI Planning régulier.', // Description longue
+                principles: [ // Principes fondamentaux
+                    'Organiser le développement autour de la valeur avec des Agile Release Trains (ART).', // Principe 1
+                    'Alignement et planification synchronisée via les événements majeurs de PI Planning.', // Principe 2
+                    'Appliquer la pensée systémique et baser la prise de décision sur l’économie.', // Principe 3
+                    'Développer selon une cadence fixe, livrer à la demande (Develop on Cadence, Release on Demand).' // Principe 4
+                ], // Fin principes
+                antipatterns: [ // Erreurs fréquentes
+                    'Transformer le PI Planning en une simple réunion descendante sans autonomie pour les équipes.', // Erreur 1
+                    'Maintenir un management en silo avec du micromanagement individuel.', // Erreur 2
+                    'Supprimer l’itération d’Innovation et de Planification (IP Iteration) en fin de PI.' // Erreur 3
+                ], // Fin antipatterns
+                rules: [ // Règles de conformité SAFe
+                    { id: 'safe1', text: 'Alignement et engagement de toutes les équipes lors du PI Planning (2 jours synchronisés)' }, // Règle 1
+                    { id: 'safe2', text: 'Fonctionnement en Agile Release Train (ART) pluridisciplinaire de 50 à 125 personnes' }, // Règle 2
+                    { id: 'safe3', text: 'Rôles clés à l\'échelle clairement identifiés (RTE, Product Management, System Architect)' }, // Règle 3
+                    { id: 'safe4', text: 'Réalisation systématique de la System Demo globale à chaque fin d\'itération' }, // Règle 4
+                    { id: 'safe5', text: 'Maintien réservé de l\'itération d\'Innovation et de Planification (IP) en fin de PI' } // Règle 5
+                ] // Fin règles
+            } // Fin SAFe
+        }; // Fin objet METHODOLOGIES
+
+        // ETAT GLOBAL DE L'APPLICATION
+        let currentMethodKey = 'agile'; // Méthode actuellement sélectionnée
+        let checkedRulesState = {}; // État des cases à cocher de la checklist
+
+        // DONNEES EXEMPLES POUR LES OUTILS INTERACTIFS DE CHAQUE METHODE
+        let dummyKanbanData = [ // Données pour l'outil Kanban
+            { id: 1, title: 'Rédiger cas d\'usage', col: 'todo' }, // Carte 1
+            { id: 2, title: 'Maquette UI', col: 'in_progress' }, // Carte 2
+            { id: 3, title: 'API d\'authentification', col: 'in_progress' }, // Carte 3
+            { id: 4, title: 'Configuration CI/CD', col: 'done' } // Carte 4
+        ]; // Fin Kanban data
+
+        let dummySprintData = { // Données pour l'outil Scrum
+            sprintName: 'Sprint 14 - Module Paiement', // Nom
+            daysLeft: 4, // Jours restants
+            tasks: [ // Tâches du sprint
+                { id: 101, title: 'Intégration Stripe API', status: 'Done', points: 5 }, // Tâche 1
+                { id: 102, title: 'Gestion des reçus PDF', status: 'In Progress', points: 3 }, // Tâche 2
+                { id: 103, title: 'Tests unitaires panier', status: 'To Do', points: 2 } // Tâche 3
+            ] // Fin tâches
+        }; // Fin Sprint data
+
+        let dummyGanttData = [ // Données pour Cascade/V
+            { phase: '1. Analyse & Besoins', start: 'Semaine 1', end: 'Semaine 3', status: 'Validé' }, // Phase 1
+            { phase: '2. Spécifications/Conception', start: 'Semaine 4', end: 'Semaine 6', status: 'En cours' }, // Phase 2
+            { phase: '3. Implémentation', start: 'Semaine 7', end: 'Semaine 11', status: 'À venir' }, // Phase 3
+            { phase: '4. Qualification / Tests', start: 'Semaine 12', end: 'Semaine 14', status: 'À venir' } // Phase 4
+        ]; // Fin Gantt data
+
+        let dummyIncrementsData = [ // Données pour Modèle Incrémental/Itératif
+            { v: 'Incrément 1', feat: 'Authentification & Profil Utilisateur', status: 'Déployé' }, // Incrément 1
+            { v: 'Incrément 2', feat: 'Catalogue produit & Recherche', status: 'En cours de dev' }, // Incrément 2
+            { v: 'Incrément 3', feat: 'Panier & Paiement en ligne', status: 'Planifié' } // Incrément 3
+        ]; // Fin Incréments data
+
+        let dummySafeData = { // Données exemple pour l'outil SAFe
+            piName: 'Program Increment 2026.1', // Nom du PI
+            artName: 'Agile Release Train - Plateforme Core', // Nom de l'ART
+            iterations: [ // Liste des itérations du PI
+                { name: 'Itération 1.1', status: 'Terminé', features: 6, progress: 100 }, // Itération 1
+                { name: 'Itération 1.2', status: 'En cours', features: 5, progress: 60 }, // Itération 2
+                { name: 'Itération 1.3', status: 'Planifié', features: 4, progress: 0 }, // Itération 3
+                { name: 'Itération 1.4 (IP)', status: 'Innovation & Planning', features: 2, progress: 0 } // Itération IP
+            ] // Fin itérations
+        }; // Fin SAFe data
+
+        // INITIALISATION AU CHARGEMENT DE LA PAGE
+        window.onload = function() { // Exécution dès que la page est chargée
+            renderMethodCards(); // Génération des cartes de méthodes sur l'accueil
+            loadSavedChecklist(); // Chargement des coches enregistrées dans le navigateur
+            selectMethod('agile'); // Sélection de la méthode Agile par défaut
+        }; // Fin window.onload
+
+        // NAVIGATION ENTRE SESSIONS
+        function showSection(sectionId) { // Basculer entre les vues principales
+            document.getElementById('sec-home').classList.add('hidden'); // Cacher l'accueil
+            document.getElementById('sec-quiz').classList.add('hidden'); // Cacher le quiz
+            document.getElementById('sec-dashboard').classList.add('hidden'); // Cacher le tableau de bord
+
+            if(sectionId === 'home') document.getElementById('sec-home').classList.remove('hidden'); // Afficher accueil
+            if(sectionId === 'quiz') document.getElementById('sec-quiz').classList.remove('hidden'); // Afficher quiz
+            if(sectionId === 'dashboard') document.getElementById('sec-dashboard').classList.remove('hidden'); // Afficher dashboard
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // Remonter en haut de page
+        } // Fin showSection
+
+        // GENERATION DES CARTES ACCUEIL
+        function renderMethodCards() { // Créer dynamiquement la grille des 7 méthodes
+            const grid = document.getElementById('methods-grid'); // Récupération du conteneur HTML
+            grid.innerHTML = ''; // Réinitialisation du contenu
+
+            Object.keys(METHODOLOGIES).forEach(key => { // Parcourir chaque clé du dictionnaire
+                const m = METHODOLOGIES[key]; // Récupérer les données de la méthode
+                const card = document.createElement('div'); // Créer l'élément carte
+                card.className = "bg-slate-800 border border-slate-700 hover:border-indigo-500/50 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl flex flex-col justify-between cursor-pointer group"; // Application du style Tailwind
+                card.onclick = () => selectMethod(key); // Attacher l'évènement de clic
+
+                card.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="p-3 bg-slate-900 rounded-xl border border-slate-700 group-hover:scale-110 transition">
+                                <i class="${m.icon} text-2xl text-indigo-400"></i>
+                            </div>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-indigo-950 text-indigo-300 border border-indigo-800">Méthode</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-indigo-300 transition">${m.name}</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">${m.shortDesc}</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-700/50 flex items-center justify-between text-xs font-semibold text-indigo-400">
+                        <span>Consulter & Suivre</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
+                    </div>
+                `; // Injection du HTML de la carte
+                grid.appendChild(card); // Ajout de la carte au conteneur
+            }); // Fin boucle forEach
+        } // Fin renderMethodCards
+
+        // SELECTIONNER UNE METHODE ET CHARGER SON ESPACE
+        function selectMethod(key) { // Activer la méthode spécifiée
+            currentMethodKey = key; // Mise à jour de la clé active
+            const m = METHODOLOGIES[key]; // Récupération des données
+
+            // Mettre à jour la bannière
+            document.getElementById('banner-icon').className = m.icon; // Icône
+            document.getElementById('banner-title').textContent = m.name; // Titre
+            document.getElementById('banner-desc').textContent = m.fullDesc; // Description
+
+            // Mettre à jour les principes et pièges
+            const pList = document.getElementById('principles-list'); // Liste principes
+            pList.innerHTML = m.principles.map(p => `<li class="leading-relaxed">${p}</li>`).join(''); // Injection principes
+            
+            const aList = document.getElementById('antipatterns-list'); // Liste pièges
+            aList.innerHTML = m.antipatterns.map(a => `<li class="leading-relaxed">${a}</li>`).join(''); // Injection pièges
+
+            // Mettre à jour la checklist
+            renderChecklist(); // Générer les éléments à cocher
+            renderInteractiveTool(); // Générer l'outil spécifique
+
+            showSection('dashboard'); // Basculer automatiquement vers l'espace de suivi
+        } // Fin selectMethod
+
+        // GESTION DES ONGLETS DU TABLEAU DE BORD
+        function switchTab(tabName) { // Changer d'onglet dans le dashboard
+            const btnGuide = document.getElementById('tab-btn-guide'); // Bouton onglet guide
+            const btnBoard = document.getElementById('tab-btn-board'); // Bouton onglet board
+            const contentGuide = document.getElementById('tab-content-guide'); // Zone guide
+            const contentBoard = document.getElementById('tab-content-board'); // Zone board
+
+            if(tabName === 'guide') { // Si clic sur guide
+                btnGuide.className = "pb-3 text-sm font-semibold border-b-2 border-indigo-500 text-indigo-400 flex items-center space-x-2"; // Style actif
+                btnBoard.className = "pb-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center space-x-2"; // Style inactif
+                contentGuide.classList.remove('hidden'); // Afficher guide
+                contentBoard.classList.add('hidden'); // Cacher board
+            } else { // Si clic sur board
+                btnBoard.className = "pb-3 text-sm font-semibold border-b-2 border-indigo-500 text-indigo-400 flex items-center space-x-2"; // Style actif
+                btnGuide.className = "pb-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center space-x-2"; // Style inactif
+                contentBoard.classList.remove('hidden'); // Afficher board
+                contentGuide.classList.add('hidden'); // Cacher guide
+            } // Fin if/else
+        } // Fin switchTab
+
+        // GENERATION DE LA CHECKLIST DE CONFORMITE
+        function renderChecklist() { // Générer la liste des règles pour la méthode active
+            const container = document.getElementById('checklist-container'); // Zone conteneur
+            container.innerHTML = ''; // Réinitialisation
+            const m = METHODOLOGIES[currentMethodKey]; // Méthode courante
+
+            m.rules.forEach((rule, index) => { // Parcourir chaque règle
+                const isChecked = !!checkedRulesState[rule.id]; // Vérifier si déjà cochée
+                const item = document.createElement('label'); // Créer l'élément HTML label
+                item.className = `flex items-start space-x-3 p-4 rounded-xl border transition cursor-pointer ${isChecked ? 'bg-indigo-950/40 border-indigo-500/50' : 'bg-slate-800 border-slate-700 hover:border-slate-600'}`; // Style dynamique
+                
+                item.innerHTML = `
+                    <input type="checkbox" onchange="toggleRule('${rule.id}')" ${isChecked ? 'checked' : ''} class="mt-1 h-5 w-5 rounded border-slate-700 bg-slate-900 text-indigo-600 focus:ring-indigo-500 focus:ring-offset-slate-900">
+                    <div class="flex-grow">
+                        <span class="text-sm font-medium ${isChecked ? 'text-indigo-200 line-through' : 'text-slate-200'}">
+                            Règle ${index + 1} : ${rule.text}
+                        </span>
+                    </div>
+                `; // Structure HTML du critère
+                container.appendChild(item); // Ajout dans la liste
+            }); // Fin boucle règles
+
+            updateScore(); // Recalculer le taux de respect
+        } // Fin renderChecklist
+
+        // BASCULER L'ETAT D'UNE REGLE
+        function toggleRule(ruleId) { // Cocher ou décocher une règle
+            checkedRulesState[ruleId] = !checkedRulesState[ruleId]; // Inverser le booléen
+            saveChecklist(); // Sauvegarder dans le stockage local du navigateur
+            renderChecklist(); // Rendre à nouveau la liste pour mise à jour visuelle
+        } // Fin toggleRule
+
+        // CALCUL DU SCORE DE RESPECT DE LA METHODE
+        function updateScore() { // Recalculer et afficher le pourcentage de respect
+            const m = METHODOLOGIES[currentMethodKey]; // Méthode courante
+            const total = m.rules.length; // Total des règles
+            let checkedCount = 0; // Compteur de règles validées
+
+            m.rules.forEach(r => { // Parcourir les règles
+                if(checkedRulesState[r.id]) checkedCount++; // Incrémenter si cochée
+            }); // Fin boucle
+
+            const percentage = Math.round((checkedCount / total) * 100); // Calcul du pourcentage
+            
+            // Mise à jour de l'affichage SVG et texte
+            document.getElementById('score-text').textContent = `${percentage}%`; // Texte score
+            const circle = document.getElementById('score-circle'); // SVG cercle
+            circle.setAttribute('stroke-dasharray', `${percentage}, 100`); // Remplissage cercle
+
+            const statusElem = document.getElementById('score-status'); // Statut texte
+            if(percentage === 100) { // Si 100%
+                statusElem.textContent = "Parfaitement conforme"; // Statut parfait
+                statusElem.className = "text-sm font-bold text-emerald-400"; // Couleur verte
+            } else if(percentage >= 60) { // Si suffisant
+                statusElem.textContent = "Partiellement conforme"; // Statut moyen
+                statusElem.className = "text-sm font-bold text-amber-400"; // Couleur orange
+            } else { // Si insuffisant
+                statusElem.textContent = "Non conforme"; // Statut bas
+                statusElem.className = "text-sm font-bold text-rose-400"; // Couleur rouge
+            } // Fin structure conditionnelle
+        } // Fin updateScore
+
+        // SAUVEGARDER/CHARGER LOCALSTORAGE
+        function saveChecklist() { // Sauvegarder les coches dans localStorage
+            try { // Utilisation d'un bloc try/catch pour éviter les erreurs de restriction iFrame
+                localStorage.setItem('methodo_rules_state', JSON.stringify(checkedRulesState)); // Enregistrement sous chaîne JSON
+            } catch(e) { console.log('Stockage local non disponible'); } // Gestion d'erreur
+        } // Fin saveChecklist
+
+        function loadSavedChecklist() { // Charger les coches enregistrées
+            try { // Bloc try/catch
+                const saved = localStorage.getItem('methodo_rules_state'); // Récupération
+                if(saved) checkedRulesState = JSON.parse(saved); // Parsing de la chaîne JSON
+            } catch(e) { console.log('Impossible de lire le stockage local'); } // Gestion d'erreur
+        } // Fin loadSavedChecklist
+
+        // ANALYSE DU QUIZ "QUELLE METHODE POUR MON PROJET ?"
+        function evaluateQuiz() { // Évaluer les réponses du questionnaire
+            const uncertainty = document.getElementById('q-uncertainty').value; // Valeur Q1
+            const delivery = document.getElementById('q-delivery').value; // Valeur Q2
+            const team = document.getElementById('q-team').value; // Valeur Q3
+            const docs = document.getElementById('q-docs').value; // Valeur Q4
+            const focus = document.getElementById('q-focus').value; // Valeur Q5
+
+            let scores = { agile: 0, scrum: 0, kanban: 0, waterfall: 0, vmodel: 0, iterative: 0, incremental: 0, safe: 0 }; // Initialisation des scores avec SAFe
+
+            // Calculs de pondération
+            if(uncertainty === 'high') { scores.agile += 3; scores.scrum += 3; scores.kanban += 2; scores.safe += 3; } // Forte incertitude
+            if(uncertainty === 'low') { scores.waterfall += 4; scores.vmodel += 4; } // Faible incertitude
+
+            if(delivery === 'continuous') { scores.kanban += 5; } // Flux continu
+            if(delivery === 'sprints') { scores.scrum += 5; scores.safe += 3; } // Cadence fixe
+            if(delivery === 'incremental') { scores.incremental += 5; scores.agile += 2; } // Morceaux fonctionnels
+            if(delivery === 'single') { scores.waterfall += 3; scores.vmodel += 3; } // Livraison unique
+
+            if(team === 'small') { scores.scrum += 2; scores.kanban += 2; scores.agile += 2; } // Petite équipe
+            if(team === 'large') { scores.safe += 7; scores.waterfall += 2; scores.vmodel += 2; } // Grande organisation (Forte priorité SAFe)
+
+            if(docs === 'strict') { scores.vmodel += 4; scores.waterfall += 3; } // Documentation stricte
+            if(docs === 'light') { scores.agile += 3; scores.kanban += 2; } // Documentation légère
+
+            if(focus === 'flow') { scores.kanban += 4; } // Focus sur le flux
+            if(focus === 'quality') { scores.vmodel += 5; scores.iterative += 2; } // Focus sur la qualité/tests
+            if(focus === 'predictability') { scores.waterfall += 4; scores.safe += 3; } // Focus prédictibilité à l'échelle
+
+            // Trouver la méthode avec le score le plus élevé
+            let bestKey = 'scrum'; // Valeur par défaut
+            let maxScore = -1; // Score max initial
+
+            Object.keys(scores).forEach(k => { // Parcourir les scores
+                if(scores[k] > maxScore) { // Si score supérieur trouvé
+                    maxScore = scores[k]; // Mettre à jour max
+                    bestKey = k; // Retenir la meilleure clé
+                } // Fin condition
+            }); // Fin parcours
+
+            const recommended = METHODOLOGIES[bestKey]; // Récupérer la méthode recommandée
+            const resultDiv = document.getElementById('quiz-result'); // Zone de résultat
+            resultDiv.classList.remove('hidden'); // Afficher la zone
+
+            resultDiv.innerHTML = `
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2 text-emerald-400 font-bold text-sm">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Recommandation sur mesure :</span>
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-white flex items-center space-x-3">
+                        <i class="${recommended.icon} text-indigo-400"></i>
+                        <span>${recommended.name}</span>
+                    </h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">${recommended.fullDesc}</p>
+                    <button onclick="selectMethod('${recommended.id}')" class="mt-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs px-4 py-2 rounded-lg transition flex items-center space-x-2">
+                        <span>Configurer & suivre cette méthode</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            `; // Injection HTML du résultat
+        } // Fin evaluateQuiz
+
+        // GENERATION DU TABLEAU DE BORD INTERACTIF SELON LA METHODE
+        function renderInteractiveTool() { // Générer l'outil pratique adapté
+            const space = document.getElementById('interactive-tool-space'); // Conteneur outil
+            space.innerHTML = ''; // Réinitialiser le contenu
+
+            if(currentMethodKey === 'kanban') { // Si Kanban
+                space.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-bold text-white">Tableau Kanban Interactif (avec limites WIP)</h3>
+                            <button onclick="addKanbanTask()" class="bg-indigo-600 hover:bg-indigo-500 text-xs px-3 py-1.5 rounded-lg text-white flex items-center space-x-1">
+                                <i class="fa-solid fa-plus"></i><span>Ajouter Tâche</span>
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
+                                <h4 class="font-bold text-sm text-slate-300 mb-3 flex justify-between"><span>A Faire (To-Do)</span> <span class="text-xs bg-slate-700 px-2 py-0.5 rounded">Pas de limite</span></h4>
+                                <div id="kanban-todo" class="space-y-2 min-h-[150px]"></div>
+                            </div>
+                            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
+                                <h4 class="font-bold text-sm text-amber-300 mb-3 flex justify-between"><span>En Cours (WIP)</span> <span class="text-xs bg-amber-950 text-amber-400 border border-amber-800 px-2 py-0.5 rounded">Max: 2</span></h4>
+                                <div id="kanban-wip" class="space-y-2 min-h-[150px]"></div>
+                            </div>
+                            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
+                                <h4 class="font-bold text-sm text-emerald-300 mb-3 flex justify-between"><span>Terminé (Done)</span> <span class="text-xs bg-slate-700 px-2 py-0.5 rounded">Illimité</span></h4>
+                                <div id="kanban-done" class="space-y-2 min-h-[150px]"></div>
+                            </div>
+                        </div>
+                    </div>
+                `; // Structure Kanban
+                renderKanbanCards(); // Remplir les cartes Kanban
+            } 
+            else if(currentMethodKey === 'scrum') { // Si Scrum
+                space.innerHTML = `
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 space-y-6">
+                        <div class="flex justify-between items-center border-b border-slate-700 pb-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-white">${dummySprintData.sprintName}</h3>
+                                <p class="text-xs text-slate-400">Suivi d'avancement du backlog de sprint</p>
+                            </div>
+                            <span class="bg-indigo-950 text-indigo-300 border border-indigo-800 px-3 py-1 rounded-full text-xs font-semibold">
+                                Jours restants : ${dummySprintData.daysLeft} jours
+                            </span>
+                        </div>
+                        <div class="space-y-3" id="srum-tasks-list">
+                            <!-- Tâches injectées JS -->
+                        </div>
+                    </div>
+                `; // Structure Scrum
+                renderScrumTasks(); // Remplir les cartes Scrum
+            } 
+            else if(currentMethodKey === 'waterfall' || currentMethodKey === 'vmodel') { // Si Cascade ou V
+                space.innerHTML = `
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 space-y-4">
+                        <h3 class="text-lg font-bold text-white">Planning Séquentiel & Jalons (Gantt Simplifié)</h3>
+                        <div class="space-y-3">
+                            ${dummyGanttData.map(g => `
+                                <div class="bg-slate-900 p-4 rounded-lg border border-slate-700 flex justify-between items-center">
+                                    <div>
+                                        <div class="text-sm font-bold text-white">${g.phase}</div>
+                                        <div class="text-xs text-slate-400">Période : ${g.start} à ${g.end}</div>
+                                    </div>
+                                    <span class="px-2.5 py-1 rounded-md text-xs font-semibold ${g.status === 'Validé' ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : (g.status === 'En cours' ? 'bg-amber-950 text-amber-400 border border-amber-800' : 'bg-slate-800 text-slate-400')}">
+                                        ${g.status}
+                                    </span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `; // Structure Gantt
+            } 
+            else if(currentMethodKey === 'safe') { // Si SAFe
+                space.innerHTML = `
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 space-y-6">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-700 pb-4 gap-2">
+                            <div>
+                                <h3 class="text-lg font-bold text-white">${dummySafeData.piName}</h3>
+                                <p class="text-xs text-teal-400 font-medium">${dummySafeData.artName}</p>
+                            </div>
+                            <span class="bg-teal-950 text-teal-300 border border-teal-800 px-3 py-1 rounded-full text-xs font-semibold">
+                                Cadence : 1 PI = 4 Itérations (8 semaines)
+                            </span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            ${dummySafeData.iterations.map(it => `
+                                <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 space-y-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs font-bold text-teal-400">${it.name}</span>
+                                        <span class="text-[10px] px-2 py-0.5 rounded ${it.status === 'Terminé' ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : (it.status === 'En cours' ? 'bg-amber-950 text-amber-400 border border-amber-800' : 'bg-slate-800 text-slate-400')}">${it.status}</span>
+                                    </div>
+                                    <div class="text-xs text-slate-300 font-medium">${it.features} Features ART engagées</div>
+                                    <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                                        <div class="bg-teal-500 h-1.5 rounded-full" style="width: ${it.progress}%"></div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `; // Structure SAFe
+            }
+            else { // Pour Agilité générale, Incrémental ou Itératif
+                space.innerHTML = `
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 space-y-4">
+                        <h3 class="text-lg font-bold text-white">Suivi des Incréments et Itérations</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            ${dummyIncrementsData.map(inc => `
+                                <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 space-y-2">
+                                    <span class="text-xs font-bold text-indigo-400">${inc.v}</span>
+                                    <h4 class="text-sm font-bold text-white">${inc.feat}</h4>
+                                    <span class="inline-block text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">${inc.status}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `; // Structure Incréments
+            } // Fin conditions outils
+        } // Fin renderInteractiveTool
+
+        // RENDU SPECIFIQUE DU TABLEAU KANBAN
+        function renderKanbanCards() { // Afficher les cartes dans chaque colonne Kanban
+            const todo = document.getElementById('kanban-todo'); // Colonne To-Do
+            const wip = document.getElementById('kanban-wip'); // Colonne WIP
+            const done = document.getElementById('kanban-done'); // Colonne Done
+
+            if(!todo || !wip || !done) return; // Sécurité si éléments non trouvés
+
+            todo.innerHTML = ''; wip.innerHTML = ''; done.innerHTML = ''; // Réinitialisation
+
+            dummyKanbanData.forEach(task => { // Parcourir les cartes Kanban
+                const el = document.createElement('div'); // Créer la carte
+                el.className = "bg-slate-900 p-3 rounded-lg border border-slate-700 flex justify-between items-center shadow"; // Style Tailwind
+                el.innerHTML = `
+                    <span class="text-xs text-slate-200 font-medium">${task.title}</span>
+                    <button onclick="moveKanbanTask(${task.id})" class="text-xs text-indigo-400 hover:text-indigo-300 p-1">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                `; // HTML de la carte
+                if(task.col === 'todo') todo.appendChild(el); // Ajouter à To-Do
+                if(task.col === 'in_progress') wip.appendChild(el); // Ajouter à WIP
+                if(task.col === 'done') done.appendChild(el); // Ajouter à Done
+            }); // Fin boucle cartes
+        } // Fin renderKanbanCards
+
+        // DEPLACER UNE CARTE KANBAN
+        function moveKanbanTask(taskId) { // Avancer une carte d'une colonne
+            const task = dummyKanbanData.find(t => t.id === taskId); // Retrouver la tâche
+            if(!task) return; // Sécurité
+
+            if(task.col === 'todo') { // Si To-Do
+                const wipCount = dummyKanbanData.filter(t => t.col === 'in_progress').length; // Compter WIP actuel
+                if(wipCount >= 2) { // Limite WIP stricte de 2
+                    alert("Attention : Limite WIP (Work In Progress) atteinte ! Vous devez terminer une tâche en cours avant d'en commencer une nouvelle."); // Avertissement sans alert() navigateur natif si possible ou géré
+                    return; // Bloquer l'action
+                } // Fin test limite
+                task.col = 'in_progress'; // Déplacer vers WIP
+            } else if(task.col === 'in_progress') { // Si WIP
+                task.col = 'done'; // Déplacer vers Done
+            } else { // Si déjà Done
+                task.col = 'todo'; // Revenir à To-Do
+            } // Fin condition
+            renderKanbanCards(); // Mettre à jour l'affichage des colonnes
+        } // Fin moveKanbanTask
+
+        // AJOUTER UNE TÂCHE KANBAN
+        function addKanbanTask() { // Ajouter une nouvelle tâche dans To-Do
+            const title = prompt("Nom de la tâche :"); // Demande de saisie
+            if(title && title.trim() !== "") { // Validation saisie
+                dummyKanbanData.push({ id: Date.now(), title: title.trim(), col: 'todo' }); // Ajouter la tâche
+                renderKanbanCards(); // Mettre à jour l'affichage
+            } // Fin validation
+        } // Fin addKanbanTask
+
+        // RENDU SPECIFIQUE DES TÂCHES SCRUM
+        function renderScrumTasks() { // Afficher les tâches du Sprint Scrum
+            const list = document.getElementById('srum-tasks-list'); // Zone de liste
+            if(!list) return; // Sécurité
+
+            list.innerHTML = dummySprintData.tasks.map(t => `
+                <div class="bg-slate-900 p-3 rounded-lg border border-slate-700 flex justify-between items-center">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-xs bg-indigo-950 text-indigo-300 font-bold px-2 py-0.5 rounded border border-indigo-800">${t.points} pts</span>
+                        <span class="text-sm font-medium text-slate-200">${t.title}</span>
+                    </div>
+                    <span class="text-xs font-semibold px-2 py-1 rounded ${t.status === 'Done' ? 'bg-emerald-950 text-emerald-400' : 'bg-amber-950 text-amber-400'}">${t.status}</span>
+                </div>
+            `).join(''); // Injection HTML des tâches
+        } // Fin renderScrumTasks
+
+    </script> <!-- Fin de la section JavaScript -->
+</body> <!-- Fin du corps du document -->
+</html> <!-- Fin du document HTML -->
